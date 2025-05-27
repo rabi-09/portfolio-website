@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabi Narayan Das</title>
+    <link rel="icon" href="{{ details.image.url }}" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+
+    <nav class="nav-bar">
+        <ul class="nav-list">
+            <li><a href="#welcome-section" class="nav-link">Home</a></li>
+            <li><a href="#about-section" class="nav-link">About</a></li>
+            <li><a href="#education-section" class="nav-link">Education</a></li>
+            <li><a href="#skills-section" class="nav-link">Skills</a></li>
+            <li><a href="#portfolio-section" class="nav-link">Portfolio</a></li>
+            <li><a href="#contact-section" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="welcome-section" class="welcome-section" data-aos="fade-up" data-aos-duration="800">
+        <div class="welcome-image-wrapper">
+            <img src="https://as2.ftcdn.net/v2/jpg/10/35/65/25/1000_F_1035652596_HYFjiione1oQJWo8rIaGVV0Mml3MZHHu.jpg" alt="Welcome background" class="welcome-image">
+
+            <div class="welcome-overlay">
+                <h1 class="welcome-title">Hi, I'm {{ details.name|default:"Someone" }} </h1>
+                <p class="welcome-desc">A passionate Software Engineer creating dynamic and engaging web experiences.</p>
+                {% if details.resume %}
+                    <a href="{{ details.resume.url }}" target="_blank" class="btn btn-primary">My Resume</a>
+                {% else %}
+                    <a href="#portfolio-section" class="btn btn-primary"> View My Works</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section id="about-section" class="about-section" data-aos="fade-right" data-aos-delay="100" data-aos-duration="800">
+        <div class="container text-center">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Get to know more about my professional journey and interests.</p>
+            <div class="row d-flex align-items-center justify-content-center about-content-row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="{{ details.image.url }}" alt="About Me" class="img-fluid about-img" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="800">
+                </div>
+                <div class="col-md-6 text-md-left">
+                    <div class="about-text-content">
+                        <p data-aos="fade-left" data-aos-delay="300" data-aos-duration="800">Hello! I'm {{ details.name|default:"Someone" }}, a Web Developer with {{ details.experience }} of experience in both front-end and back-end development. I specialize in Python(DJango), building responsive and user-friendly web applications.</p>
+                        <p data-aos="fade-left" data-aos-delay="400" data-aos-duration="800">My journey in web development began with a fascination for how digital experiences come to life. I thrive on solving complex problems and constantly learning new technologies to deliver high-quality solutions.</p>
+                        <p data-aos="fade-left" data-aos-delay="500" data-aos-duration="800">Outside of coding, I enjoy {{ details.hobby }}. I believe in continuous growth and leveraging technology to make a positive impact.</p>
+                        <div class="row mt-4">
+                            <div class="col-6 pr-3">
+                                <div class="stats-card" data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
+                                    <h4>{{ details.experience | slice:1 }} +</h4>
+                                    <p>Years Experience</p>
+                                </div>
+                            </div>
+                            <div class="col-6 pl-3">
+                                <div class="stats-card" data-aos="fade-up" data-aos-delay="700" data-aos-duration="800">
+                                    <h4>20+</h4>
+                                    <p>Projects Completed</p>
+                                </div>
+                            </div>
+                            <div class="col-6 pl-3">
+                                <div class="stats-card" data-aos="fade-up" data-aos-delay="700" data-aos-duration="800">
+                                    <h4>10+</h4>
+                                    <p>Team Collaborations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education-section" class="education-section" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+        <div class="container text-center">
+            <h2 class="edu-heading section-title">Academic Performance</h2>
+            <div class="edu-container">
+                <div class="edu-left">
+                    {% for edu in educations %}
+                    <div class="edu-item" data-target="{{edu.id}}">
+                        <i class="fas fa-graduation-cap"></i> {{ edu.academic_name }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="edu-right">
+                    {% for edu in educations %}
+                        <div id="{{ edu.id }}" class="edu-card show">
+                            <h3>{{ edu.academic_name }}</h3>
+                            <p><strong>{{ edu.institution }}</strong></p>
+                            <p> {{ edu.joining_year }} - {{ edu.passing_year }} </p>   
+                            <p>percentage / CGPA : <strong>{{ edu.mark }}</strong></p>
+                            <p>{{ edu.details }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills-section" class="skills-section" data-aos="zoom-in-up" data-aos-delay="300" data-aos-duration="800">
+        <div class="container text-center">
+            <h2 class="section-title">My Skills</h2>
+            <p class="section-subtitle" style="margin-left:0%;">A blend of technical expertise and practical tools.</p>
+           <div class="skills-row">
+                {% for skill in skills %}
+                    <div class="skill" data-percent="{{ skill.percentage }}" data-color="{{ skill.color }}">
+                        <svg class="progress-ring" width="80" height="80">
+                            <circle class="bg" stroke="#e0e0e0" stroke-width="5" fill="transparent"
+                                    r="35" cx="40" cy="40"></circle>
+                            <circle class="fg"
+                                    stroke="{{ skill.color }}"
+                                    stroke-width="5"
+                                    fill="transparent"
+                                    r="35" cx="40" cy="40"></circle>
+                        </svg>
+                        <div class="emoji"> <img src="{{ skill.image.url }}" alt="{{ skill.name }}"></div>
+                        <div class="skill-name">{{ skill.name }}</div> {# Percentage will be added here by JS #}
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
+
+
+        </div>
+    </section>
+
+    {% if projects %}
+    <section id="portfolio-section" class="portfolio-section" data-aos="fade-down" data-aos-delay="400" data-aos-duration="800">
+        <div class="container text-center">
+            <h2 class="section-title">My Portfolio</h2>
+            <p class="section-subtitle" style="margin-left:0%;">Explore a selection of my recent projects.</p>
+            <div class="portfolio-container">
+                <div class="portfolio-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    {% for category in category %}
+                        <button class="category-btn" data-category="{{ category.slug }}">
+                            {{ category.name }}
+                        </button>
+                    {% endfor %}
+                </div>
+                <div class="portfolio-items">
+                    {% for project in projects %}
+                        <div class="portfolio-card" data-category="{{ project.slug }}" data-aos="flip-up" data-aos-delay="100" data-aos-duration="800">
+                            <img src="{{ project.image.url }}" alt="{{ project.name }}">
+                            <div class="portfolio-overlay">
+                                <span class="category">{{ project.category.name }}</span>
+                                <h3>{{ project.name }}</h3>
+                                <div class="actions">
+                                    {% if project.project_link %}
+                                        <a href="{{ project.project_link }}" target="_blank" class="icon-btn" title="View Live"><i class="fas fa-external-link-alt"></i></a>
+                                    {% endif %}
+                                    {% if project.git_link %}
+                                        <a href="{{ project.git_link }}" target="_blank" class="icon-btn" title="View Code"><i class="fab fa-github"></i></a>
+                                    {% endif %}
+                                    <button class="icon-btn view-img" data-img="{{ project.image.url }}" title="View Image"><i class="fas fa-image"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="no-projects-message">
+                            <p>No projects found for this category.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <div id="imgModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg" src="">
+    </div>
+
+    <section id="contact-section" class="contact-section" data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">
+        <div class="container text-center">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle" style="margin-left:0%;">I'd love to hear from you!</p>
+
+            <div class="contact-container">
+                <div class="contact-info" data-aos="fade-right" data-aos-delay="600" data-aos-duration="800">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> {{ details.address }}
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> {{ details.email }}
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i> {{ details.phone }}
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://linkedin.com/in/rabinarayan-das" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/rabi-09" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://instagram.com/_rabi.09_" target="_blank" title="instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form" data-aos="fade-left" data-aos-delay="700" data-aos-duration="800">
+                    <div class="form-box">
+                        <h3>Send Me a Message</h3>
+                        <p>Feel free to reach out for collaborations, project inquiries, or just to say hello.</p>
+                        <form action="{% url 'submit_contact' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <input type="text" name="subject" placeholder="Subject">
+                            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer" data-aos="fade-in" data-aos-delay="500" data-aos-duration="500">
+        <div class="container footer-container">
+            <div class="footer-left">
+                <h3>{{ details.name|default:"My Portfolio" }}</h3>
+                <p>Turning Lines of code into Solutions.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#welcome-section">Home</a></li>
+                    <li><a href="#about-section">About</a></li>
+                    <li><a href="#portfolio-section">Portfolio</a></li>
+                    <li><a href="#contact-section">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Me</h4>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/rabinarayan-das" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/rabi-09" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com/_rabi.09_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="currentYear"></span> [Your Name]. All rights reserved.
+            <p>❤️developed by <a href="http://github.com/rabi-09" target="_blank" style="text-decoration: none; color: beige;">rabi.09</a></p>
+        </div>
+    </footer>
+
+
+
+    <style>
+        .edu-card {
+            display: none;
+        }
+        .edu-card.active {
+            display: block;
+        }
+    </style>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

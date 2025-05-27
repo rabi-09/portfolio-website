@@ -1,0 +1,1507 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d1b2a;
+    color: #ffffff;
+    transition: background-color 0.5s, color 0.5s;
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ensure full width */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body.dark-mode {
+    background-color: #f8f9fa; /* Light background for dark mode (toggled state) */
+    color: #212529; /* Dark text for dark mode (toggled state) */
+}
+
+/* Container for Bootstrap-like centering and max-width */
+.container {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Basic Flex Row (similar to Bootstrap's row) */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px; /* Compensate for column padding */
+    margin-right: -15px; /* Compensate for column padding */
+}
+
+/* Basic Flex Column (similar to Bootstrap's col-md-6) */
+.col-md-6 {
+    flex: 0 0 50%; /* 50% width */
+    max-width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Text alignment helpers */
+.text-center {
+    text-align: center;
+}
+
+.text-md-left {
+    text-align: left;
+}
+
+/* Margin Top/Bottom Helpers */
+.mt-4 {
+    margin-top: 1.5rem; /* ~24px */
+}
+
+/* Image Fluid for responsiveness */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* General Buttons (if needed, example here) */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #00f7ff;
+    color: #0d1b2a;
+    border: 2px solid #00f7ff;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: #00f7ff;
+    border-color: #00f7ff;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: transparent;
+    color: #007bff;
+    border-color: #007bff;
+}
+
+
+/* Headings to be consistent */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #00f7ff; /* Primary accent color */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #007bff; /* Different accent color for dark mode headings */
+}
+
+/* Ensure all sections inherit the same font and color */
+header,
+section,
+footer {
+    font-family: 'Roboto', sans-serif !important; /* Body text font */
+    color: inherit !important; /* Inherit color from body for dynamic change */
+}
+
+/* Navigation Bar */
+.nav-bar {
+    background-color: transparent;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    padding-left: 0;
+    margin: 0;
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif; /* Heading font for nav links */
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .nav-link {
+    color: #343a40; /* Darker color for nav links in dark mode */
+}
+
+.nav-link:hover {
+    border-color: #ffffff50;
+    color: #5ee5ea;
+    transform: scale(1.03);
+}
+
+body.dark-mode .nav-link:hover {
+    border-color: rgba(52, 58, 64, 0.5); /* Darker border for hover in dark mode */
+    color: #0056b3; /* Darker hover color */
+}
+
+/* Welcome Section */
+.welcome-section {
+    height: 100vh;
+    background-color: #0d1b2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+body.dark-mode .welcome-section {
+    background-color: #f8f9fa;
+}
+
+.welcome-image-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    height: 550px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.welcome-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.welcome-image-wrapper:hover .welcome-image {
+    transform: scale(1.05);
+}
+
+.welcome-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.welcome-image-wrapper:hover .welcome-overlay {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+.welcome-title {
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+    margin-bottom: 15px;
+    color: #ffffff; /* Override for overlay, always white */
+}
+
+.welcome-desc {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif; /* Body font */
+    margin-bottom: 20px;
+    color: #ffffff; /* Override for overlay, always white */
+}
+
+
+
+/* General Body Styling (Example, adjust as needed) */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d1a33; /* Dark background for the whole page */
+    color: #ffffff; /* Default text color */
+    line-height: 1.6;
+}
+
+/* Dark Mode Toggle (Example, if you have a dark mode switch) */
+body.dark-mode {
+    background-color: #f8f9fa; /* Light background for dark mode (light theme) */
+    color: #212529; /* Dark text for dark mode (light theme) */
+}
+
+/* General Body Styling (Example, adjust as needed) */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d1a33; /* Dark background for the whole page */
+    color: #ffffff; /* Default text color */
+    line-height: 1.6;
+}
+
+/* Dark Mode Toggle (Example, if you have a dark mode switch) */
+body.dark-mode {
+    background-color: #f8f9fa; /* Light background for dark mode (light theme) */
+    color: #212529; /* Dark text for dark mode (light theme) */
+}
+
+/* General Body Styling (Example, adjust as needed) */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d1a33; /* Dark background for the whole page */
+    color: #ffffff; /* Default text color */
+    line-height: 1.6;
+}
+
+/* Dark Mode Toggle (Example, if you have a dark mode switch) */
+body.dark-mode {
+    background-color: #f8f9fa; /* Light background for dark mode (light theme) */
+    color: #212529; /* Dark text for dark mode (light theme) */
+}
+
+
+/* General Body Styling (Example, adjust as needed) */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d1a33; /* Dark background for the whole page */
+    color: #ffffff; /* Default text color */
+    line-height: 1.6;
+}
+
+/* Dark Mode Toggle (Example, if you have a dark mode switch) */
+body.dark-mode {
+    background-color: #f8f9fa; /* Light background for dark mode (light theme) */
+    color: #212529; /* Dark text for dark mode (light theme) */
+}
+
+/* About Section */
+.about-section {
+    background-color: #0b162e; /* Original dark background */
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+body.dark-mode .about-section {
+    background-color: #e2e6ea; /* Light background for about section in dark mode */
+    color: #212529; /* Dark text for the section in dark mode */
+}
+
+.section-title {
+    color: #00f7ff; /* Primary accent color */
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+body.dark-mode .section-title {
+    color: #007bff; /* Different accent color for dark mode titles */
+}
+
+.section-subtitle {
+    color: #aab4d4;
+    font-family: 'Roboto', sans-serif; /* Body font */
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    margin-left: 30%;
+}
+
+body.dark-mode .section-subtitle {
+    color: #6c757d; /* Darker subtitle color */
+}
+
+/* About Image */
+.about-img {
+    margin-left: 15%;
+    margin-right: auto;
+    margin-top: 20px;
+    display: block;
+    border-radius: 15px;
+    height: 420px;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    transition: transform 0.5s ease; /* Animation for hover effect */
+}
+
+.about-img:hover {
+    transform: scale(1.05) rotate(0.5deg) translateZ(5px);
+    transition: transform 0.3s ease; /* Faster transition on hover out */
+    box-shadow: 0 0 2px 1px rgba(0, 255, 255, 0.5); /* Glowing border on hover */
+}
+
+/* About Text Content (no background/card style) */
+.about-text-content {
+    color: #ffffff; /* Default text color for this content area */
+    text-align: justify; /* Align text to the left */
+    margin-left: -25%;
+}
+
+body.dark-mode .about-text-content {
+    color: #212529; /* Darker text for dark mode */
+}
+
+/* Paragraphs within the About section */
+.about-section p {
+    color: inherit; /* Inherit color from parent (.about-text-content or .about-section) */
+    margin-bottom: 1rem; /* Spacing between paragraphs */
+    text-align: left; /* Ensure paragraphs within this section are left-aligned */
+}
+
+body.dark-mode .about-section p {
+    color: inherit; /* Inherit color from parent */
+}
+
+/* Stats Cards */
+.stats-card {
+    background-color: #111a2d; /* Dark background for stats cards */
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px; /* Space from the text above */
+    color: white;
+    transition: transform 0.3s ease;
+    cursor: default;
+    text-align: center; /* Center content within stats card */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+body.dark-mode .stats-card {
+    background-color: #343a40; /* Darker grey background for stats cards in dark mode */
+    color: #f8f9fa; /* Light text for stats cards in dark mode */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card h4 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00f7ff; /* Accent color for numbers */
+    margin-bottom: 0.2rem;
+}
+
+body.dark-mode .stats-card h4 {
+    color: #007bff; /* Different accent color for numbers in dark mode */
+}
+
+.stats-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0; /* Remove default paragraph margin */
+    color: inherit; /* Inherit color from stats-card */
+}
+
+.stats-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Revert column spacing for image and text to allow proper centering */
+/* Removing or commenting out previous specific padding adjustments for .col-md-6 */
+.about-section .row {
+    --bs-gutter-x: 1.5rem; /* Revert to Bootstrap's default horizontal gutter */
+    --bs-gutter-y: 0;
+}
+.about-section .col-md-6 {
+    /* Remove padding-left/right overrides here, or set to initial/unset */
+    padding-left: calc(var(--bs-gutter-x) * .5); /* Revert to default Bootstrap column padding */
+    padding-right: calc(var(--bs-gutter-x) * .5); /* Revert to default Bootstrap column padding */
+}
+
+
+/* Increase gap between stat cards more by increasing padding on their columns */
+.col-6.pr-3 {
+    padding-right: 2rem !important; /* Keep increased padding for gap between cards */
+}
+
+.col-6.pl-3 {
+    padding-left: 2rem !important; /* Keep increased padding for gap between cards */
+}
+
+/* Ensure columns behave correctly for flex alignment */
+.about-section .row > div[class*="col-"] {
+    display: flex; /* Ensures columns are flex items */
+    flex-direction: column; /* Stacks content within the column vertically */
+    align-items: flex-start; /* Align contents to the start (left) within their own column */
+    justify-content: center; /* Centers content vertically within the column */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+/* Override for image column to re-center image if align-items: flex-start causes issue */
+.about-section .col-md-6:first-child {
+    align-items: center; /* Re-center items in the first column (image) */
+}
+
+
+/* Responsive adjustments for columns on small screens */
+@media (max-width: 767.98px) { /* For small devices (Bootstrap's -sm breakpoint) */
+    .about-section .row > div[class*="col-"] {
+        padding-left: 15px;
+        padding-right: 15px;
+        align-items: center; /* Center items on small screens when stacked */
+        text-align: center; /* Center text for entire column on small screens */
+    }
+    .about-section p {
+        text-align: center; /* Re-center individual paragraphs on small screens */
+    }
+    /* Ensure image takes full width on small screens if it's too small */
+    .about-img {
+        max-width: 80%; /* Adjust as needed to prevent it from being too wide/narrow */
+        height: auto; /* Allow height to adjust proportionally */
+        margin-bottom: 1.5rem; /* Add some space below image before text card */
+    }
+
+    /* Reset padding for stat card columns on small screens if desired */
+    /* Remove pr-3/pl-3 effects on small screens */
+    .col-6.pr-3, .col-6.pl-3 {
+        padding-left: calc(var(--bs-gutter-x) * .5); /* Default Bootstrap gutter behavior */
+        padding-right: calc(var(--bs-gutter-x) * .5); /* Default Bootstrap gutter behavior */
+    }
+}
+
+
+
+
+/* Education Section */
+.education-section {
+    padding: 50px;
+    max-width: 100%; /* Full width */
+    margin: auto;
+    background-color: #0d1b2a;
+    color: #fff;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .education-section {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Heading */
+.edu-heading {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #00f7ff; /* Primary accent color */
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+}
+
+body.dark-mode .edu-heading {
+    color: #007bff;
+}
+
+/* Layout */
+.edu-container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap; /* Make it responsive */
+    justify-content: center;
+}
+
+/* Left Menu */
+.edu-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 280px;
+    padding: 20px;
+    background: #131a26;
+    border-radius: 12px;
+}
+
+body.dark-mode .edu-left {
+    background: #e9ecef;
+}
+
+.edu-item {
+    background-color: #182738;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #ffffffcc;
+    position: relative;
+    border-left: 4px solid transparent;
+    font-family: 'Montserrat', sans-serif; /* Heading font for menu items */
+}
+
+body.dark-mode .edu-item {
+    background-color: #ced4da;
+    color: #495057;
+}
+
+.edu-item:hover {
+    background-color: #1f2f45;
+    color: #00cfff;
+}
+
+body.dark-mode .edu-item:hover {
+    background-color: #adb5bd;
+    color: #0056b3;
+}
+
+.edu-item.active {
+    background-color: #0f2438;
+    color: #00d1ff;
+    border-left: 4px solid #00d1ff;
+}
+
+body.dark-mode .edu-item.active {
+    background-color: #dae0e5;
+    color: #007bff;
+    border-left: 4px solid #007bff;
+}
+
+/* Right Card Container */
+.edu-right {
+    flex: 1;
+    background-color: #12263a;
+    border-radius: 12px;
+    padding: 25px;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-mode .edu-right {
+    background-color: #ffffff;
+}
+
+/* Card */
+.edu-card {
+    display: none;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.5s ease;
+    width: 100%;
+    max-width: 600px;
+}
+
+.edu-card.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    position: relative;
+}
+
+.edu-card h3 {
+    color: #5ee5ea; /* Accent color */
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+body.dark-mode .edu-card h3 {
+    color: #007bff;
+}
+
+.edu-card p {
+    font-family: 'Roboto', sans-serif; /* Body font */
+    font-size: 1rem;
+    color: #ccc;
+}
+
+body.dark-mode .edu-card p {
+    color: #495057;
+}
+
+/* Skills Section */
+.skills-section {
+    padding: 60px 0;
+    background: #0b162e;
+    text-align: center;
+}
+
+body.dark-mode .skills-section {
+    background: #e2e6ea;
+    color: #212529;
+}
+
+.skills-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.skill {
+    position: relative;
+    width: 100px; /* Consistent width */
+    height: 100px; /* Consistent height */
+    text-align: center;
+    animation: fadeIn 0.8s ease-in;
+    display: flex; /* Use flexbox for centering content */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Take full width of skill container */
+    height: 100%; /* Take full height of skill container */
+    z-index: 2;
+    pointer-events: none;
+    position: absolute; /* Keep absolute for layering over SVG */
+    top: 0;
+    left: 0;
+}
+
+/* Adjust image size within the emoji container */
+.emoji img {
+    width: 50px; /* Set your desired image width */
+    height: 50px; /* Set your desired image height */
+    object-fit: contain; /* Ensures the image scales properly within the bounds */
+}
+
+
+.skill-name {
+    margin-top: 8px; /* Adjusted margin */
+    color: #ffffffcc;
+    font-family: 'Montserrat', sans-serif; /* Heading font for skill names */
+    font-size: 0.85rem;
+    position: absolute; /* Position below emoji but adjust if needed */
+    bottom: -25px; /* Adjust as needed to place below circle */
+    width: 100%;
+}
+
+body.dark-mode .skill-name {
+    color: #495057;
+}
+
+/* Progress ring base */
+.progress-ring {
+    transform: rotate(-90deg);
+    width: 80px; /* Explicit width for SVG */
+    height: 80px; /* Explicit height for SVG */
+    position: relative;
+    z-index: 1; /* Ensure it's behind emoji */
+}
+
+circle {
+    fill: none;
+    stroke-width: 5;
+    r: 35;
+    cx: 40;
+    cy: 40;
+}
+
+.bg {
+    stroke: rgba(255, 255, 255, 0.05);
+    filter: none;
+}
+
+body.dark-mode .bg {
+    stroke: rgba(0, 0, 0, 0.1);
+}
+
+.fg {
+    stroke: #fff;
+    stroke-dasharray: 219.911; /* Circumference for r=35 */
+    stroke-dashoffset: 219.911; /* Initially hides the circle */
+    stroke-linecap: round;
+    filter: none;
+    transition: stroke-dashoffset 1s ease-out; /* Smooth animation */
+}
+
+/* Optional animation fade */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Portfolio Section */
+.portfolio-section {
+    padding: 80px 40px;
+    background: #0d1b2a;
+    color: white;
+    text-align: center;
+}
+
+body.dark-mode .portfolio-section {
+    background: #f8f9fa;
+    color: #212529;
+}
+
+.portfolio-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center; /* Center container on all screens */
+    margin-left: 0; /* Remove fixed margin-left */
+}
+
+.portfolio-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #0d1b2a;
+    padding: 30px 20px;
+    border-radius: 15px;
+    min-width: 200px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+body.dark-mode .portfolio-categories {
+    background: #e9ecef;
+}
+
+.category-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Montserrat', sans-serif; /* Heading font for category buttons */
+    font-size: 0.95rem;
+    text-align: left;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode .category-btn {
+    color: #495057;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background: #12263a;
+    color: #00f7ff;
+    border-left: 4px solid #00f7ff;
+}
+
+body.dark-mode .category-btn.active,
+body.dark-mode .category-btn:hover {
+    background: #adb5bd;
+    color: #007bff;
+    border-left: 4px solid #007bff;
+}
+
+.portfolio-items {
+    display: grid; /* Use CSS Grid for better control over columns */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columns, responsive */
+    gap: 30px;
+    flex: 1;
+    justify-content: center; /* Fallback for older browsers */
+}
+
+.portfolio-card {
+    position: relative;
+    /* width: 280px; Removed fixed width for grid */
+    border-radius: 12px;
+    overflow: hidden;
+    background: #1b263b;
+    transition: transform 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Added opacity and transform */
+}
+
+body.dark-mode .portfolio-card {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-6px);
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    color: white;
+    width: 100%;
+    text-align: left;
+}
+
+.portfolio-overlay .category {
+    font-size: 0.75rem;
+    color: #00f7ff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+}
+
+.portfolio-overlay h3 {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+    color: #ffffff; /* Always white for overlay */
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.icon-btn {
+    width: 30px;
+    height: 30px;
+    background: #00f7ff;
+    color: #0d1b2a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+body.dark-mode .icon-btn {
+    background: #007bff;
+    color: #ffffff;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    display: none;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: #00f7ff;
+    cursor: pointer;
+}
+
+body.dark-mode .modal-close {
+    color: #007bff;
+}
+
+/* Contact Section */
+.contact-section {
+    background: #0b162e;
+    color: white;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+body.dark-mode .contact-section {
+    background: #e2e6ea;
+    color: #212529;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+}
+
+.section-subtitle {
+    font-size: 0.95rem;
+    color: #aaa;
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .section-subtitle {
+    color: #6c757d;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 40px;
+    justify-content: center;
+}
+
+.contact-info {
+    background: #1e90ff; /* A shade of blue */
+    padding: 40px 30px;
+    border-radius: 15px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+body.dark-mode .contact-info {
+    background: #007bff; /* Bootstrap primary blue */
+    color: #ffffff;
+}
+
+.contact-info h3 {
+    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+    color: #ffffff; /* Always white for contact info heading */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.95rem;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: white;
+    background: #0b162e;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+body.dark-mode .social-icons a {
+    background: #495057;
+    color: #ffffff;
+}
+
+.social-icons a:hover {
+    background: #00f7ff;
+    color: #0b162e;
+}
+
+body.dark-mode .social-icons a:hover {
+    background: #007bff;
+    color: #ffffff;
+}
+
+.contact-form {
+    flex: 2;
+    min-width: 300px;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contact-form iframe {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    border: none;
+}
+
+.form-box {
+    background: #121e33;
+    padding: 30px 25px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+body.dark-mode .form-box {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-box h3 {
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+}
+
+.form-box p {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-bottom: 25px;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .form-box p {
+    color: #6c757d;
+}
+
+.form-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-box input,
+.form-box textarea {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #0b162e;
+    color: white;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .form-box input,
+body.dark-mode .form-box textarea {
+    background: #e9ecef;
+    color: #212529;
+    border: 1px solid #ced4da;
+}
+
+.form-box button {
+    background: #00f7ff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #0b162e;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif; /* Heading font for buttons */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Center the text */
+    gap: 8px;
+}
+
+body.dark-mode .form-box button {
+    background: #007bff;
+    color: #ffffff;
+}
+
+.form-box button:hover {
+    background: #00d1e6;
+}
+
+body.dark-mode .form-box button:hover {
+    background: #0056b3;
+}
+
+/* Footer */
+.site-footer {
+    background: #0d1b2a;
+    color: white;
+    padding: 50px 40px 20px;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .site-footer {
+    background: #212529;
+    color: #ffffff;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    border-bottom: 1px solid #12263a;
+    padding-bottom: 30px;
+}
+
+body.dark-mode .footer-container {
+    border-bottom: 1px solid #495057;
+}
+
+.footer-left {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-left h3 {
+    font-size: 1.6rem;
+    color: #00f7ff; /* Primary accent color */
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+}
+
+body.dark-mode .footer-left h3 {
+    color: #007bff;
+}
+
+.footer-left p {
+    color: #bbb;
+    font-size: 0.9rem;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .footer-left p {
+    color: #adb5bd;
+}
+
+.footer-links {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-links h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin: 8px 0;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .footer-links a {
+    color: #ced4da;
+}
+
+.footer-links a:hover {
+    color: #00f7ff;
+}
+
+body.dark-mode .footer-links a:hover {
+    color: #007bff;
+}
+
+.footer-social {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-social h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif; /* Heading font */
+}
+
+.footer-social .social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social .social-icons a {
+    color: white;
+    background: #1b263b;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+body.dark-mode .footer-social .social-icons a {
+    background: #495057;
+    color: #ffffff;
+}
+
+.footer-social .social-icons a:hover {
+    background: #00f7ff;
+    color: #0b162e;
+}
+
+body.dark-mode .footer-social .social-icons a:hover {
+    background: #007bff;
+    color: #ffffff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.85rem;
+    color: #888;
+    font-family: 'Roboto', sans-serif; /* Body font */
+}
+
+body.dark-mode .footer-bottom {
+    color: #adb5bd;
+}
+
+/* Theme Toggle Button */
+.dark-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    border-radius: 50%;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid #00f7ff;
+    color: #00f7ff;
+    transition: all 0.3s ease;
+}
+
+.dark-toggle:hover {
+    background: #00f7ff;
+    color: #0d1b2a;
+    border-color: #0d1b2a;
+}
+
+/* Dark mode specific styles for the toggle button */
+body.dark-mode .dark-toggle {
+    background: transparent;
+    border: 2px solid #007bff;
+    color: #007bff;
+}
+
+body.dark-mode .dark-toggle:hover {
+    background: #007bff;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .about-img {
+        margin-left: auto; /* Ensure centering on smaller screens */
+        margin-right: auto;
+        margin-bottom: 20px; /* Add some space below image */
+    }
+
+    .about-section .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-section .col-md-6 {
+        margin-bottom: 20px;
+        max-width: 100%; 
+        flex: 0 0 100%;
+    }
+
+    .edu-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edu-left {
+        width: 100%;
+        max-width: 400px; /* Limit width on smaller screens */
+    }
+
+    .portfolio-container {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .portfolio-categories {
+        position: static; /* Remove sticky position on small screens */
+        width: 100%;
+        max-width: 400px; /* Limit width for category buttons */
+        flex-direction: row; /* Display categories in a row */
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .portfolio-categories .category-btn {
+        text-align: center;
+        border-left: none;
+        border-bottom: 4px solid transparent;
+    }
+
+    .portfolio-categories .category-btn.active,
+    .portfolio-categories .category-btn:hover {
+        border-bottom: 4px solid #00f7ff;
+        border-left: none; /* Remove left border on small screens */
+    }
+
+    body.dark-mode .portfolio-categories .category-btn.active,
+    body.dark-mode .portfolio-categories .category-btn:hover {
+        border-bottom: 4px solid #007bff;
+        border-left: none;
+    }
+
+    .portfolio-items {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust for 2 columns on tablets */
+        justify-content: center;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info,
+    .contact-form {
+        max-width: 100%;
+    }
+
+    .site-footer .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left,
+    .footer-links,
+    .footer-social {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .footer-social .social-icons {
+        justify-content: center;
+    }
+
+    .nav-list {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-image-wrapper {
+        height: 400px;
+    }
+    .welcome-overlay {
+        padding: 20px;
+    }
+    .welcome-title {
+        font-size: 1.5rem;
+    }
+    .welcome-desc {
+        font-size: 0.9rem;
+    }
+
+    .stats-card {
+        padding: 15px;
+    }
+    .stats-card h4 {
+        font-size: 1.2rem;
+    }
+    .stats-card p {
+        font-size: 0.8rem;
+    }
+
+    .skills-row {
+        gap: 30px;
+    }
+
+    .skill {
+        width: 80px;
+        height: 80px;
+    }
+
+    .progress-ring {
+        width: 70px;
+        height: 70px;
+    }
+
+    circle {
+        r: 30;
+        cx: 35;
+        cy: 35;
+    }
+    .emoji {
+        font-size: 1.5rem;
+    }
+    .skill-name {
+        font-size: 0.75rem;
+    }
+    .skill-percent {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-list {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .welcome-image-wrapper {
+        height: 300px;
+        width: 95%;
+    }
+    .welcome-overlay .btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+    .about-img {
+        height: 250px;
+    }
+    .contact-section, .portfolio-section, .education-section, .skills-section {
+        padding: 40px 20px;
+    }
+    .contact-info, .form-box {
+        padding: 20px 15px;
+    }
+    .contact-info h3, .form-box h3 {
+        font-size: 1.1rem;
+    }
+    .footer-container {
+        padding-bottom: 20px;
+    }
+    .footer-left h3 {
+        font-size: 1.4rem;
+    }
+    .footer-bottom {
+        font-size: 0.75rem;
+    }
+    .portfolio-items {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+}
+
+
+
