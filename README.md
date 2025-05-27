@@ -5,7 +5,7 @@
 ## 🔗 Live Demo
 
 Check out the live version here:  
-👉 [portfolio](http://rabi07.pythonanywhere.com)
+👉 <a href="http://rabi07.pythonanywhere.com" target="_blank">portfolio</a>
 
 ---
 
